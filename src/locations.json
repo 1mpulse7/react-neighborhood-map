@@ -1,0 +1,29 @@
+{
+  "locations" : [
+    {
+      "name": "Ihop",
+      "lat": 31.534366,
+      "long": -110.257825
+    },
+    {
+      "name": "Vinny's NY Pizza",
+      "lat": 31.534208,
+      "long": -110.256428
+    },
+    {
+      "name": "Applebees",
+      "lat": 31.532237,
+      "long": -110.258135
+    },
+    {
+      "name": "Texas Roadhouse",
+      "lat": 31.530532,
+      "long": -110.257639
+    },
+    {
+      "name": "Windemere Hotel",
+      "lat": 31.531867,
+      "long": -110.256304
+    }
+  ]
+}
