@@ -15,10 +15,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-        <BurgerMenu/>
+        <BurgerMenu locationsList={this.state.all}/>
         <h1>Sierra Vista Food</h1>
-        </header>
         <MapContainer
           lat = {this.state.lat}
           long = {this.state.long}

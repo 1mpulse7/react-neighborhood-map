@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {slide as Menu} from 'react-burger-menu';
+import Search from './SearchBar.js';
 
 class BurgerMenu extends Component {
   showSettings = (event) => {
@@ -10,8 +11,8 @@ class BurgerMenu extends Component {
 
     const styles = {
       bmBurgerButton: {
-        position: 'fixed',
-        width: '36px',
+        position: 'relative',
+        width: '30px',
         height: '30px',
         left: '36px',
         top: '36px'
@@ -45,10 +46,10 @@ class BurgerMenu extends Component {
 
     return (
       <Menu styles={styles}>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
+        <Search/>
+        {this.props.locationsList.locations.map((location) => (
+          <div key={location.name}>{location.name}</div>
+        ))}
       </Menu>
     );
   }
