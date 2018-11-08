@@ -51,6 +51,7 @@ class MapContainer extends Component {
         initialCenter = {center}>
         {this.props.markerLocations.locations.map((marker) => (
           <Marker
+            name={marker.name}
             key={marker.name}
             title={marker.name}
             position={{lat:marker.lat, lng: marker.long}}
@@ -59,7 +60,7 @@ class MapContainer extends Component {
         ))}
         <InfoWindow
           marker = {this.state.activeMarker}
-          visable = {this.state.showingInfoWindow}>
+          visible = {this.state.showingInfoWindow}>
           <div>
             <h1>{this.state.selectedPlace.title}</h1>
           </div>
