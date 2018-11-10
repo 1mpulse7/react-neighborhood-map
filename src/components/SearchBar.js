@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
+import '../App.css';
 
 class Search extends Component {
-  state = {
-    query: '',
-  }
-
-  handleInputChange = () => {
-    this.setState({
-      query: this.search.value
-    })
-  }
 
   render() {
     return (
       <form>
         <input
-          placeholder="search..."
+          placeholder="search bar"
           ref={input => this.search = input}
-          onChange={this.handleInputChange}
+          onChange={this.props.handleInputChange}
           />
-        <p>{this.state.query}</p>
       </form>
     )
   }

@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import {slide as Menu} from 'react-burger-menu';
-import Search from './SearchBar.js';
 
 class BurgerMenu extends Component {
+  state = {
+    query: ""
+  }
+
   showSettings = (event) => {
     event.preventDefault();
+  }
+
+  updateQuery = (newQuery) => {
+    this.setState({query: newQuery});
+    this.props.filterLocations(newQuery);
   }
 
   render () {
@@ -45,10 +53,18 @@ class BurgerMenu extends Component {
     }
 
     return (
-      <Menu styles={styles}>
-        <Search/>
-        {this.props.locationsList.locations.map((location) => (
-          <div key={location.name}>{location.name}</div>
+      <Menu
+        styles={styles}>
+        <form>
+          <input
+            placeholder="search bar"
+            type="text"
+            onChange={event => this.updateQuery(event.target.value)}
+            value={this.state.query}
+            />
+        </form>
+        {this.props.locationsList.map((location) => (
+          <button key={location.name}>{location.name}</button>
         ))}
       </Menu>
     );

@@ -3,17 +3,12 @@ import {Map, GoogleApiWrapper, Marker, InfoWindow} from 'google-maps-react';
 
 class MapContainer extends Component {
   state = {
-    map: null,
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {}
   };
 
   componentDidMount = () => {
-  }
-
-  loadMap = (props, map) => {
-    this.setState({map})
   }
 
   onMarkerClick = (props, marker, event) => {
@@ -24,10 +19,16 @@ class MapContainer extends Component {
     })
   }
 
+  onMarkerClose = () => {
+    this.setState({
+      activeMarker: null,
+      showingInfoWindow: false
+    })
+  }
 
   render() {
     if(!this.props.loaded) {
-      return <div> Loading...</div>
+      return <div>Loading...</div>
     }
     const style = {
       width: '100%',
@@ -49,7 +50,7 @@ class MapContainer extends Component {
         zoom = {this.props.zoom}
         style = {style}
         initialCenter = {center}>
-        {this.props.markerLocations.locations.map((marker) => (
+        {this.props.markerLocations.map((marker) => (
           <Marker
             name={marker.name}
             key={marker.name}
@@ -60,7 +61,8 @@ class MapContainer extends Component {
         ))}
         <InfoWindow
           marker = {this.state.activeMarker}
-          visible = {this.state.showingInfoWindow}>
+          visible = {this.state.showingInfoWindow}
+          onClose = {this.onMarkerClose}>
           <div>
             <h1>{this.state.selectedPlace.title}</h1>
           </div>
