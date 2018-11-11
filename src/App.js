@@ -7,11 +7,11 @@ import BurgerMenu from './components/BurgerMenu.js';
 class App extends Component {
 
   state = {
-    lat: 31.533811,
-    long: -110.257324,
-    zoom: 15,
+    lat: 29.7858,
+    long: -95.8244,
+    zoom: 16,
     all: locations,
-    filtered: null
+    filtered: null,
   }
 
   componentWillMount = () => {
@@ -33,12 +33,24 @@ class App extends Component {
     return locations.filter(location => location.name.toLowerCase().includes(query.toLowerCase()))
   }
 
+  clickListItem = (props, marker, event) => {
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    })
+  }
+
+
+
   render() {
     return (
       <div className="App">
         <BurgerMenu
-          locationsList={this.state.filtered}
-          filterLocations = {this.updateQuery}/>
+          locationsList = {this.state.filtered}
+          filterLocations = {this.updateQuery}
+          clickListItem = {this.clickListItem}
+          />
           <h1>Sierra Vista Food</h1>
         <MapContainer
           lat = {this.state.lat}

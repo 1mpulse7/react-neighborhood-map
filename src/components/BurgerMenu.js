@@ -64,7 +64,11 @@ class BurgerMenu extends Component {
             />
         </form>
         {this.props.locationsList.map((location) => (
-          <button key={location.name}>{location.name}</button>
+          <button
+            key = {location.name}
+            onClick = {this.props.clickListItem}>
+            {location.name}
+          </button>
         ))}
       </Menu>
     );

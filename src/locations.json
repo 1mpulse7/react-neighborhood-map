@@ -1,29 +1,34 @@
 {
   "locations" : [
     {
-      "name": "Ihop",
-      "lat": 31.534366,
-      "long": -110.257825
+      "name": "Abuelo's Mexican Restaurant",
+      "lat": 29.786930,
+      "long": -95.795086,
+      "url": "placeholder"
     },
     {
       "name": "Vinny's NY Pizza",
-      "lat": 31.534208,
-      "long": -110.256428
+      "lat": 31.5342,
+      "long": -110.2562,
+      "url": "placeholder"
     },
     {
       "name": "Applebees",
       "lat": 31.532237,
-      "long": -110.258135
+      "long": -110.258135,
+      "url": "placeholder"
     },
     {
       "name": "Texas Roadhouse",
       "lat": 31.530532,
-      "long": -110.257639
+      "long": -110.257639,
+      "url": "placeholder"
     },
     {
       "name": "Windemere Hotel",
       "lat": 31.531867,
-      "long": -110.256304
+      "long": -110.256304,
+      "url": "placeholder"
     }
   ]
 }
