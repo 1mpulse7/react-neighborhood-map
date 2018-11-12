@@ -1,12 +1,6 @@
 {
   "locations" : [
     {
-      "name": "Abuelo's Mexican Restaurant",
-      "lat": 29.786930,
-      "long": -95.795086,
-      "url": "placeholder"
-    },
-    {
       "name": "Vinny's NY Pizza",
       "lat": 31.5342,
       "long": -110.2562,

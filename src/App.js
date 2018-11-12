@@ -7,8 +7,8 @@ import BurgerMenu from './components/BurgerMenu.js';
 class App extends Component {
 
   state = {
-    lat: 29.7858,
-    long: -95.8244,
+    lat: 31.534332,
+    long: -110.257361,
     zoom: 16,
     all: locations,
     filtered: null,

@@ -15,7 +15,16 @@ class MapContainer extends Component {
     selectedPlace: {}
   };
 
-  componentDidMount = () => {
+  componentDidMount = () => {}
+
+  componentWillReceiveProps = (props) => {
+    if (this.state.markers.length !== props.markerLocations.length) {
+      this.onMarkerClose();
+      this.updateMarkers(props.markerLocations)
+      this.setState({activeMarker: null})
+
+      return;
+    }
   }
 
   mapReady = (props, map) => {
@@ -82,7 +91,9 @@ class MapContainer extends Component {
       return;
     }
 
-    this.state.markers.forEach(marker => marker.setMap(null));
+    this
+      .state.markers
+      .forEach(marker => marker.setMap(null));
 
     let markerProps = [];
     let markers = markerLocations.map((location, index) => {
