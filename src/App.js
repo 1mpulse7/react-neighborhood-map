@@ -33,10 +33,9 @@ class App extends Component {
     return locations.filter(location => location.name.toLowerCase().includes(query.toLowerCase()))
   }
 
-  clickListItem = (props, marker, event) => {
+  clickListItem = (index) => {
     this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
+      selectedIndex: index,
       showingInfoWindow: true
     })
   }
@@ -57,6 +56,7 @@ class App extends Component {
           long = {this.state.long}
           zoom = {this.state.zoom}
           markerLocations = {this.state.filtered}
+          selectedIndex = {this.state.selectedIndex}
           />
       </div>
     );

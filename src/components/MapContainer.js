@@ -25,6 +25,17 @@ class MapContainer extends Component {
 
       return;
     }
+
+    if (!props.selectedIndex || (this.state.activeMarker &&
+      (this.state.markers[props.selectedIndex] !== this.state.activeMarker))) {
+        this.onMarkerClose();
+      }
+
+    if (props.selectedIndex === null || typeof(props.selectedIndex) === 'undefined') {
+      return;
+    }
+
+    this.onMarkerClick(this.state.markerProps[props.selectedIndex], this.state.markers[props.selectedIndex])
   }
 
   mapReady = (props, map) => {

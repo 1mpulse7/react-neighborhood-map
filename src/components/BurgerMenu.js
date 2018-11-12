@@ -3,7 +3,8 @@ import {slide as Menu} from 'react-burger-menu';
 
 class BurgerMenu extends Component {
   state = {
-    query: ""
+    query: "",
+    menuOpen: false
   }
 
   showSettings = (event) => {
@@ -13,6 +14,10 @@ class BurgerMenu extends Component {
   updateQuery = (newQuery) => {
     this.setState({query: newQuery});
     this.props.filterLocations(newQuery);
+  }
+
+  closeMenu = () => {
+    this.setState({menuOpen: false})
   }
 
   render () {
@@ -54,6 +59,7 @@ class BurgerMenu extends Component {
 
     return (
       <Menu
+        isOpen={this.state.menuOpen}
         styles={styles}>
         <form>
           <input
@@ -63,10 +69,13 @@ class BurgerMenu extends Component {
             value={this.state.query}
             />
         </form>
-        {this.props.locationsList.map((location) => (
+        {this.props.locationsList.map((location, index) => (
           <button
-            key = {location.name}
-            onClick = {this.props.clickListItem}>
+            key = {location.index + location.name}
+            onClick = {event => {
+              this.closeMenu()
+              this.props.clickListItem(index)
+            }}>
             {location.name}
           </button>
         ))}
