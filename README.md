@@ -1,44 +1,38 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#Udacity FEND Project 7
+##Neighborhood React Map
 
-## Available Scripts
+###Motivation
+I built this project for the final project of the Udacity frontend nano-degree.
+It is a map of Tombstone, AZ with five marker locations to visit. To view details
+of the marked locations, click on the markers and an information window will show
+with a link to the location's website. There is a burger menu in the top left hand
+corner, with a list of all the locations and a function to filter through them.
 
-In the project directory, you can run:
+###Instructions
+In order to use the application you need to :
+  1. Clone the github repository on to your local machine
+  2. Using the command line, install the necessary dependancies with `npm install`
+  3. Using the command line, launch a development server using `npm start`
+  4. There is a Service Worker set to register inside index.js, This is the Service
+    Worker that is pre-built into React, however in order to take advantage of those
+    benefits, the application must be put into a production build. It is not functional
+    with the test build.
 
-### `npm start`
+###API's, and Libraries Used
+  For map data, I used Google Map's API.
+    Which can be found here: https://cloud.google.com/maps-platform/
+  To make working with the Google Map's API easier, I used a library called google-maps-react.
+    The README for which can be found at: https://github.com/fullstackreact/google-maps-react/blob/master/README.md
+  The third-party API I used was Foursquare, and their photos to be displayed in marker info windows
+    Their website is: https://developer.foursquare.com/docs/api
+  To create the burger menu that contains the locations list, I used a library called react-burger-menu
+    The README from the developer's github is: https://github.com/negomi/react-burger-menu/blob/master/README.md#styling
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+###Resources Used
 
-### `npm test`
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+I used the @DougBrown(MWS) walkthrough. found here: https://www.youtube.com/watch?v=NVAVLCJwAAo&feature=youtu.be
+This walkthrough primarily helped with marker creation, and getting the markers to display the info window when clicked inside of the list view, and using the Foursquare data. To create the map object, and info window I followed the README of google-maps-react, as mention in the above section. To create the burger menu I followed the README associated with the library I used. To help me with the filter function, and passing the filtered props back to the map display I used the @DougBrown(MWS) walkthrough, but to understand how componentWillReceiveProps() works I found an article found at: https://medium.com/@baphemot/understanding-reactjs-component-life-cycle-823a640b3e8d
+which also explained error handling with componentDidCatch.
