@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {slide as Menu} from 'react-burger-menu';
+import '../BurgerMenu.css';
 
 class BurgerMenu extends Component {
   state = {
@@ -24,11 +25,11 @@ class BurgerMenu extends Component {
 
     const styles = {
       bmBurgerButton: {
-        position: 'relative',
+        position: 'fixed',
         width: '30px',
         height: '30px',
         left: '36px',
-        top: '36px'
+        top: '15px'
       },
       bmBurgerBars: {
         background: '#373a47'

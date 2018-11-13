@@ -12,10 +12,15 @@ class MapContainer extends Component {
     markerProps: [],
     showingInfoWindow: false,
     activeMarker: {},
-    selectedPlace: {}
+    selectedPlace: {},
+    error: null,
+    timeout: null
   };
 
-  componentDidMount = () => {}
+  componentDidCatch = (errorString, errorInfo) => {
+    this.setState({error: errorString});
+    console.log(errorInfo)
+  }
 
   componentWillReceiveProps = (props) => {
     if (this.state.markers.length !== props.markerLocations.length) {
@@ -39,6 +44,7 @@ class MapContainer extends Component {
   }
 
   mapReady = (props, map) => {
+    this.setState({error: null})
     this.setState({map});
     this.updateMarkers(this.props.markerLocations)
   }
@@ -130,9 +136,8 @@ class MapContainer extends Component {
   }
 
   render() {
-    if(!this.props.loaded) {
-      return <div>Loading...</div>
-    }
+
+    //variables for the map style, and starting position
     const style = {
       width: '100%',
       height: '100%'
@@ -143,39 +148,46 @@ class MapContainer extends Component {
       lng: this.props.long
     }
 
-    return (
-      <div>
-      <Map
-        role = 'application'
-        aria-label = 'map'
-        onReady = {this.mapReady}
-        google = {this.props.google}
-        zoom = {this.props.zoom}
-        style = {style}
-        initialCenter = {center}>
-        <InfoWindow
-          marker = {this.state.activeMarker}
-          visible = {this.state.showingInfoWindow}
-          onClose = {this.onMarkerClose}>
-          <div>
-            <h1>{this.state.selectedPlace.name}</h1>
-            {this.state.selectedPlace && this.state.selectedPlace.url
-              ?(
-                <a href = {this.state.url}>See Website</a>
+    if(!this.props.loaded && !this.state.error) {
+      return <div>Loading Map...</div>
+    } else if (this.state.error) {
+      return  <p>There seems to have been an error with your connection. Try refreshing the page!</p>
+    } else {
+      return (
+        <div>
+        <Map
+          role = 'application'
+          aria-label = 'map'
+          onReady = {this.mapReady}
+          google = {this.props.google}
+          zoom = {this.props.zoom}
+          style = {style}
+          initialCenter = {center}
+          onClick = {this.onMarkerClose}>
+          <InfoWindow
+            marker = {this.state.activeMarker}
+            visible = {this.state.showingInfoWindow}
+            onClose = {this.onMarkerClose}>
+            <div>
+              <h2>{this.state.selectedPlace.name}</h2>
+              {this.state.selectedPlace && this.state.selectedPlace.url
+                ?(
+                  <a href = {this.state.url}>See Website</a>
+                ) : ""}
+              {this.state.selectedPlace && this.state.selectedPlace.images
+                ? (
+                  <div><img
+                    alt = {"business"}
+                    src = {this.state.selectedPlace.images.items[0].prefix + "100x100" + this.state.selectedPlace.images.items[0].suffix}></img>
+                    <p>Image provided by Foursquare</p>
+                  </div>
               ) : ""}
-            {this.state.selectedPlace && this.state.selectedPlace.images
-              ? (
-                <div><img
-                  alt = {"business"}
-                  src = {this.state.selectedPlace.images.items[0].prefix + "100x100" + this.state.selectedPlace.images.items[0].suffix}></img>
-                  <p>Image provided by Foursquare</p>
-                </div>
-            ) : ""}
-          </div>
-        </InfoWindow>
-      </Map>
-      </div>
-    )
+            </div>
+          </InfoWindow>
+        </Map>
+        </div>
+      )
+    }
   }
 }
 

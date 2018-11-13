@@ -1,0 +1,12 @@
+button {
+  padding: 5px;
+  font-size: 100%;
+  border: 0;
+  background-color: inherit;
+  color: green;
+  cursor: pointer;
+}
+
+form {
+  padding-bottom: 10px;
+}

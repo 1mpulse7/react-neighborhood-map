@@ -45,12 +45,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      <header><h1 role="main">Sierra Vista Food</h1></header>
+        <div>
         <BurgerMenu
           locationsList = {this.state.filtered}
           filterLocations = {this.updateQuery}
           clickListItem = {this.clickListItem}
           />
-          <h1>Sierra Vista Food</h1>
+        </div>
         <MapContainer
           lat = {this.state.lat}
           long = {this.state.long}
