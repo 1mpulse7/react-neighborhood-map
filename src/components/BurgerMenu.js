@@ -15,6 +15,7 @@ class BurgerMenu extends Component {
   updateQuery = (newQuery) => {
     this.setState({query: newQuery});
     this.props.filterLocations(newQuery);
+    this.setState({menuOpen: true});
   }
 
   closeMenu = () => {
@@ -60,22 +61,22 @@ class BurgerMenu extends Component {
 
     return (
       <Menu
-        isOpen={this.state.menuOpen}
-        styles={styles}>
+        isOpen = {this.state.menuOpen}
+        styles = {styles}>
         <form>
           <input
-            placeholder="search bar"
-            type="text"
-            onChange={event => this.updateQuery(event.target.value)}
-            value={this.state.query}
+            placeholder = "search bar"
+            type = "text"
+            onChange = {event => this.updateQuery(event.target.value)}
+            value = {this.state.query}
             />
         </form>
         {this.props.locationsList.map((location, index) => (
           <button
             key = {location.index + location.name}
             onClick = {event => {
-              this.closeMenu();
               this.props.clickListItem(index);
+              this.closeMenu();
             }}>
             {location.name}
           </button>

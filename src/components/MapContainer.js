@@ -12,7 +12,7 @@ class MapContainer extends Component {
     markers: [],
     markerProps: [],
     showingInfoWindow: false,
-    activeMarker: {},
+    activeMarker: null,
     selectedPlace: {},
     error: null,
   };
@@ -102,10 +102,14 @@ class MapContainer extends Component {
               ...activeMarkerProps,
               images: result.response.photos
             };
-            //set animation to null here
+            if (this.state.activeMarker) {
+              this.state.activeMarker.setAnimation(null)
+            }
+          marker.setAnimation(this.props.google.maps.Animation.BOUNCE)
           this.setState({selectedPlace: activeMarkerProps, activeMarker: marker, showingInfoWindow: true});
           })
       } else {
+        marker.setAnimation(this.props.google.maps.Animation.BOUNCE)
         this.setState({selectedPlace: activeMarkerProps, activeMarker: marker, showingInfoWindow: true});
       }
     })
@@ -114,6 +118,9 @@ class MapContainer extends Component {
   //clears out the activeMarker, and closes InfoWindow
 
   onMarkerClose = () => {
+    if (this.state.activeMarker) {
+      this.state.activeMarker.setAnimation(null)
+    }
     this.setState({
       activeMarker: null,
       showingInfoWindow: false
