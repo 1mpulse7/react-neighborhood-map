@@ -5,6 +5,7 @@ button {
   background-color: inherit;
   color: green;
   cursor: pointer;
+  text-align: left;
 }
 
 form {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Map, GoogleApiWrapper, InfoWindow} from 'google-maps-react';
 
+//foursquare API keys
 const FS_CLIENT = "BH14CY1MDSAQSKPWCRDK1V2VXMWA5ZJZMRMOVC035EVUCCQG";
 const FS_SECRET = "2L0IS0ZADOB5DYQSE5RDVKCQONKXUACI2XGNFAJN3WVO1CC5";
 const FS_VERSION = "20180323";
@@ -14,19 +15,26 @@ class MapContainer extends Component {
     activeMarker: {},
     selectedPlace: {},
     error: null,
-    timeout: null
   };
+
+  //componentDidCatch function is for catching any errors, if there are, it setState
+  //the error to display the error screen
 
   componentDidCatch = (errorString, errorInfo) => {
     this.setState({error: errorString});
     console.log(errorInfo)
   }
 
+  /*componentWillReceiveProps allows the filter function to update as the props.markerLocations updates.
+  it also checks to see if there is an activeMarker or selectedIndex.
+  the activeMarker will get closed, and if there is a selectedIndex from the locations list
+  it will open the correct info window. if not, the info window stays closed*/
+
   componentWillReceiveProps = (props) => {
     if (this.state.markers.length !== props.markerLocations.length) {
       this.onMarkerClose();
-      this.updateMarkers(props.markerLocations)
-      this.setState({activeMarker: null})
+      this.updateMarkers(props.markerLocations);
+      this.setState({activeMarker: null});
 
       return;
     }
@@ -40,21 +48,30 @@ class MapContainer extends Component {
       return;
     }
 
-    this.onMarkerClick(this.state.markerProps[props.selectedIndex], this.state.markers[props.selectedIndex])
+    this.onMarkerClick(this.state.markerProps[props.selectedIndex], this.state.markers[props.selectedIndex]);
   }
 
+  //mapReady checks for errors, sets the map object and then places the markers
+
   mapReady = (props, map) => {
-    this.setState({error: null})
+    this.setState({error: null});
     this.setState({map});
-    this.updateMarkers(this.props.markerLocations)
+    this.updateMarkers(this.props.markerLocations);
   }
+
+  //getFSData just checks to make sure the names in my locations.json match the foursquare response
 
   getFSData = (props, data) => {
     return data
       .response
       .venues
       .filter(item => item.name.includes(props.name) || props.name.includes(item.name));
-    }
+  }
+
+  /* this function retrieves the foursquare data, filters it using getFSData,
+  and then begins to set the state for the marker props to be displayed in the info window onClick,
+  finally setting the info window to show. the if statement functions to open the InfoWindow
+  in the event foursquare has to data to provide*/
 
   onMarkerClick = (props, marker, event) => {
     this.onMarkerClose();
@@ -75,7 +92,6 @@ class MapContainer extends Component {
         ...props,
         foursquare: business[0]
       };
-      console.log(business);
 
       if (activeMarkerProps.foursquare) {
         let url = `https://api.foursquare.com/v2/venues/${business[0].id}/photos?client_id=${FS_CLIENT}&client_secret=${FS_SECRET}&v=${FS_VERSION}`;
@@ -86,22 +102,28 @@ class MapContainer extends Component {
               ...activeMarkerProps,
               images: result.response.photos
             };
-            console.log(activeMarkerProps);
             //set animation to null here
-          this.setState({selectedPlace: activeMarkerProps, activeMarker: marker, showingInfoWindow: true})
+          this.setState({selectedPlace: activeMarkerProps, activeMarker: marker, showingInfoWindow: true});
           })
       } else {
-        this.setState({selectedPlace: activeMarkerProps, activeMarker: marker, showingInfoWindow: true})
+        this.setState({selectedPlace: activeMarkerProps, activeMarker: marker, showingInfoWindow: true});
       }
     })
   }
+
+  //clears out the activeMarker, and closes InfoWindow
 
   onMarkerClose = () => {
     this.setState({
       activeMarker: null,
       showingInfoWindow: false
-    })
+    });
   }
+
+  /*this function creates the markers based on a state property called markers.
+  it maps through them, taking the data needed to create the markers and then
+  indexing the markers as they are created. this indexing allows them to 'clicked' from
+  the burger menu so the info window is shown */
 
   updateMarkers = (markerLocations) => {
     if (!markerLocations) {
@@ -128,7 +150,7 @@ class MapContainer extends Component {
         map: this.state.map
       });
       marker.addListener('click', () => {
-        this.onMarkerClick(mProps, marker, null)
+        this.onMarkerClick(mProps, marker, null);
       });
       return marker;
     })
@@ -171,8 +193,8 @@ class MapContainer extends Component {
             <div>
               <h2>{this.state.selectedPlace.name}</h2>
               {this.state.selectedPlace && this.state.selectedPlace.url
-                ?(
-                  <a href = {this.state.url}>See Website</a>
+                ? (
+                  <a href = {this.state.selectedPlace.url}>See Website</a>
                 ) : ""}
               {this.state.selectedPlace && this.state.selectedPlace.images
                 ? (

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {slide as Menu} from 'react-burger-menu';
-import '../BurgerMenu.css';
+import '../css/BurgerMenu.css';
 
 class BurgerMenu extends Component {
   state = {
@@ -18,7 +18,7 @@ class BurgerMenu extends Component {
   }
 
   closeMenu = () => {
-    this.setState({menuOpen: false})
+    this.setState({menuOpen: false});
   }
 
   render () {
@@ -28,7 +28,7 @@ class BurgerMenu extends Component {
         position: 'fixed',
         width: '30px',
         height: '30px',
-        left: '36px',
+        left: '25px',
         top: '15px'
       },
       bmBurgerBars: {
@@ -74,8 +74,8 @@ class BurgerMenu extends Component {
           <button
             key = {location.index + location.name}
             onClick = {event => {
-              this.closeMenu()
-              this.props.clickListItem(index)
+              this.closeMenu();
+              this.props.clickListItem(index);
             }}>
             {location.name}
           </button>

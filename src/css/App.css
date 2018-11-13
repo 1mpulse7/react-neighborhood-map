@@ -1,0 +1,21 @@
+.App {
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  height: 60px;
+  color: green;
+}
+
+/* this media query is used to ensure the h1 tag doesn't overlap with the burger
+menu icon on smaller screens*/
+
+@media only screen and (max-width: 400px) {
+  h1 {
+    text-align: right;
+    padding-top: 10px;
+    padding-right: 15px;
+    font-size: 28px;
+  }
+}

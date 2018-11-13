@@ -1,0 +1,34 @@
+{
+  "locations" : [
+    {
+      "name": "Old Tombstone Wild West Theme Park",
+      "lat": 31.711243,
+      "long": -110.067656,
+      "url": "http://oldtombstonewesternthemepark.com"
+    },
+    {
+      "name": "Big Nose Kate's Saloon",
+      "lat": 31.712353,
+      "long": -110.066628,
+      "url": "http://bignosekates.info"
+    },
+    {
+      "name": "Tombstone Brewing Company",
+      "lat": 31.712769,
+      "long": -110.070341,
+      "url": "http://tombstone.beer"
+    },
+    {
+      "name": "O.K. Corral",
+      "lat": 31.713866,
+      "long": -110.067717,
+      "url": "http://okcorral.com"
+    },
+    {
+      "name": "Silver Strike Winery",
+      "lat": 31.712919,
+      "long": -110.067222,
+      "url": "http://silverstrikewinery.com"
+    }
+  ]
+}
