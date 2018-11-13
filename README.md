@@ -1,14 +1,14 @@
-#Udacity FEND Project 7
-##Neighborhood React Map
+# Udacity FEND Project 7
+## Neighborhood React Map
 
-###Motivation
+### Motivation
 I built this project for the final project of the Udacity frontend nano-degree.
 It is a map of Tombstone, AZ with five marker locations to visit. To view details
 of the marked locations, click on the markers and an information window will show
 with a link to the location's website. There is a burger menu in the top left hand
 corner, with a list of all the locations and a function to filter through them.
 
-###Instructions
+### Instructions
 In order to use the application you need to :
   1. Clone the github repository on to your local machine
   2. Using the command line, install the necessary dependancies with `npm install`
@@ -18,7 +18,7 @@ In order to use the application you need to :
     benefits, the application must be put into a production build. It is not functional
     with the test build.
 
-###API's, and Libraries Used
+### API's, and Libraries Used
   For map data, I used Google Map's API.
     Which can be found here: https://cloud.google.com/maps-platform/
   To make working with the Google Map's API easier, I used a library called google-maps-react.
@@ -29,7 +29,7 @@ In order to use the application you need to :
     The README from the developer's github is: https://github.com/negomi/react-burger-menu/blob/master/README.md#styling
 
 
-###Resources Used
+### Resources Used
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
